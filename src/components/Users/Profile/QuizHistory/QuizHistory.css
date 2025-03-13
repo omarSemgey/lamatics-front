@@ -1,0 +1,159 @@
+.quiz-history{
+    margin: auto;
+    min-height: calc(100vh - 100px);
+    max-width: 80%;
+
+    .header{
+        font-size: var(--text-xl);
+        color: var(--color-heading);
+        margin-bottom: 1rem;
+    }
+
+    .page-header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+
+        .sort {
+            border: 1px solid #c4bbbb;
+            border-radius: 4px;
+            padding: 10px;
+            background-color: var(--color-card);
+            font-size: var(--text-sm);
+            color: var(--color-text);
+        }
+
+        .search{
+            position: relative;
+
+            form{
+                cursor: default;
+                width: 100%;
+
+                input{
+                    padding: 15px;
+                    background-color: var(--color-card);
+                    font-size: var(--text-sm);
+                    color: var(--color-text);
+                    border-radius: 22px;
+                    border: none;
+                    overflow: hidden;
+
+                    &:focus{
+                        outline: none;
+                    }
+
+                    &:focus ~ .icon{
+                        display: none;
+                    }
+                }
+
+                .icon{
+                    position: absolute;
+                    right: 10%;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    color: var(--color-green-1);
+                    cursor: text;
+                }
+            }
+        }
+    }
+
+    .quiz-card{
+        background: var(--color-card);
+        border-radius: 24px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        padding: 48px;
+        margin-bottom: 2rem;
+        text-align: center;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        overflow-wrap: break-word;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+        .quiz-title{
+            color: var(--color-heading);
+            margin: 0;
+            font-size: var(--text-lg);
+        }
+        .quiz-description{
+            color: var(--color-text);
+            font-size: var(--text-md);
+        }
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .quiz-details {
+            display: flex;
+            justify-content: space-around;
+
+            .detail-item {
+                font-size: var(--text-md);
+                color: var(--color-heading);
+
+                .difficulty {
+                    font-weight: bold;
+                    text-transform: capitalize;
+                    padding: 4px 12px;
+                    border-radius: 8px;
+
+                    &.easy {
+                        background-color: rgba(46, 125, 50, 0.2); 
+                        color: #2E7D32;
+                    }
+
+                    &.medium {
+                        background-color: rgba(255, 152, 0, 0.2); 
+                        color: #ff9800;
+                    }
+
+                    &.hard {
+                        background-color: rgba(255, 82, 82, 0.2);
+                        color: #FF5252;
+                    }
+
+                }
+
+                .questions-count{
+                    font-weight: bold;
+                    padding: 4px 12px;
+                    border-radius: 8px;
+                    background-color: rgba(63, 81, 181, 0.2);
+                    color: #3F51B5 ;
+                }
+
+                .score{
+                    font-weight: bold;
+                    padding: 4px 12px;
+                    border-radius: 8px;
+
+                &.good {
+                    background-color: rgba(46, 125, 50, 0.2); 
+                    color: #2E7D32;
+                }
+
+                &.medium {
+                    background-color: rgba(255, 152, 0, 0.2); 
+                    color: #ff9800;
+                }
+
+                &.bad {
+                    background-color: rgba(255, 82, 82, 0.2);
+                    color: #FF5252;
+                }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .quiz-history .quiz-card{
+        padding: 24px;
+    }
+}

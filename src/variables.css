@@ -1,0 +1,59 @@
+/* Colors variables */
+:root{
+    color-scheme: light dark;
+    --color-background: light-dark(#ebf0eb, #151a17);
+    --color-surface: light-dark(#FFFFFF, #1E1E1E );
+    --color-text: light-dark(#212121, #ffffff);
+    --color-heading: light-dark(#212121, #f7f4f4);
+    --color-card: light-dark(#f3f8f3, #2C2C2C);
+    --color-border: light-dark(#1E1E1E, #F5F5F5);
+
+    /* Green Colors */
+    --color-green-1: #66BB6A; /* Vibrant Green (Primary) */
+    --color-green-2: #43A047; /* Darker Green (Accent) */
+    --color-green-3: #2E7D32; /* Deep Green (Secondary Accent) */
+    --color-green-4: #1B5E20; /* Dark Green (Tertiary Accent) */
+
+    /* Utility Colors */
+    --color-success: #4CAF50; /* Success Messages */
+    --color-error: #FF5252; /* Error Messages */
+}
+
+/* Fonts variables */
+:root {
+    /* Base font size (1rem = 16px by default) */
+    --base-font-size: 1rem;
+
+    /* Large screens (desktops) */
+    --text-xs: calc(var(--base-font-size) * 1); /* 1rem (16px) */
+    --text-sm: calc(var(--base-font-size) * 1.125); /* 1.125rem (18px) */
+    --text-md: calc(var(--base-font-size) * 1.25); /* 1.25rem (20px) */
+    --text-lg: calc(var(--base-font-size) * 1.5); /* 1.5rem (24px) */
+    --text-xl: calc(var(--base-font-size) * 2); /* 2rem (32px) */
+
+    /* Medium screens (tablets) */
+    @media (max-width: 1024px) {
+        --text-xs: calc(var(--base-font-size) * 0.875); /* 0.875rem (14px) */
+        --text-sm: calc(var(--base-font-size) * 1); /* 1rem (16px) */
+        --text-md: calc(var(--base-font-size) * 1.125); /* 1.125rem (18px) */
+        --text-lg: calc(var(--base-font-size) * 1.25); /* 1.25rem (20px) */
+        --text-xl: calc(var(--base-font-size) * 1.5); /* 1.5rem (24px) */
+    }
+
+    /* Small screens (mobile) */
+    @media (max-width: 768px) {
+        --text-xs: calc(var(--base-font-size) * 0.75); /* 0.75rem (12px) */
+        --text-sm: calc(var(--base-font-size) * 0.875); /* 0.875rem (14px) */
+        --text-md: calc(var(--base-font-size) * 1); /* 1rem (16px) */
+        --text-lg: calc(var(--base-font-size) * 1.125); /* 1.125rem (18px) */
+        --text-xl: calc(var(--base-font-size) * 1.25); /* 1.25rem (20px) */
+    }
+}
+
+.dark{
+    color-scheme: dark;
+}
+
+.light{
+    color-scheme: light;
+}

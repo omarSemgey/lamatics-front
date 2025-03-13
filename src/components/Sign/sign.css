@@ -1,0 +1,110 @@
+.sign{
+    width: 40%;
+    min-height: 100vh;
+    margin: auto;
+    align-content: center;
+
+    .container{
+        color: var(--color-heading);
+        background-color: var(--color-surface);
+        width: 100%;
+        border-radius: 12px;
+        padding: 20px 48px 40px 48px;
+
+        .header{
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: end;
+            flex-direction: column;
+
+            a{
+                color: var(--color-green-2);
+                text-decoration: underline;
+            }
+        }
+
+        h1{
+            margin: 0;
+        }
+
+        form{
+            display: flex;
+            justify-content: center;
+            align-items: end;
+            flex-direction: column;
+            gap: 20px;
+
+            div{
+                display: flex;
+                justify-content: center;
+                align-items: end;
+                flex-direction: column;
+                width: 100%;
+                font-size: var(--text-md);
+
+                label{
+                    color: var(--color-green-3);
+                }
+
+                input{
+                    display: block;
+                    width: 100%;
+                    border: 1px solid #c4bbbb;
+                    border-radius: 4px;
+                    line-height: 40px;
+                    margin-top: 10px;
+                    padding: 0px 30px;
+                    outline: none;
+                    transition: border-color .4s ease;
+
+                    &:focus {
+                        border-color: var(--color-green-2);
+                    }
+                }
+
+                .error{
+                    margin: 10px 0 0 0;
+                    font-size: var(--text-md);
+                    color: var(--color-error);
+                }
+            }
+
+            button{
+                display: inline-block;
+                line-height: 40px;
+                padding: 0 40px;
+                background: var(--color-green-2);
+                color: #fff;
+                margin-top: 20px;
+                width: 100%;
+                box-shadow: 2.828px 2.828px 15px 0px rgba(0, 0, 0, 0.1);
+                border: 1px soli var(--color-green-2);
+                border-radius: 255px;
+                font-size: var(--text-md);
+                font-weight: 600;
+                text-transform: uppercase;
+                position: relative;
+                cursor: pointer;
+                min-width: 172px;
+
+                &:disabled{
+                    background-color: #BDBDBD;
+                    cursor: not-allowed;
+                }
+            }
+    }
+    }
+}
+
+@media (max-width: 1024px) {
+    .sign{
+        width: 70%; 
+    }
+}
+
+@media (max-width: 768px) {
+    .sign {
+        width: 90%;
+    }
+}

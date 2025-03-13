@@ -1,0 +1,10 @@
+.footer{
+    padding: 0 5px;
+    background-color: var(--color-background);
+    color: var(--color-heading);
+    overflow: auto;
+
+    a{
+        color: var(--color-green-3);
+    }
+}

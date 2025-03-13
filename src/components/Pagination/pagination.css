@@ -1,0 +1,20 @@
+.pagination{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+    .box{
+        color: #fff;
+        background-color: var(--color-green-2);
+        padding: 15px;
+        min-width: 50px;
+        border-radius: 16px;
+    }
+}
+
+/* @media (max-width: 550px) {
+    .quizzes-page .pagination .box{
+        padding: 13px;
+        min-width: 25px;
+    }
+} */
