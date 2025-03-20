@@ -70,14 +70,14 @@ export default function QuizResults (){
             <div className="quiz-header">
                 <h1 className="quiz-title">{quiz.quiz_title}</h1>
                 <p className="quiz-description">{quiz.quiz_description}</p>
-                <p className='user-score'><span className={`score ${handleScoreClass(score)}`}>Your score : {score}%</span></p>
+                <p className='user-score'><span className={`score ${handleScoreClass(score)}`}>النتيجة : {score}%</span></p>
             </div>
 
             <div className="quiz-questions">
                 {questions?.map((question, index) => (
                     <div key={question.quiz_question_id} className="question-card">
                         <div className="question-header">
-                            <span className="question-number">Question {index + 1}</span>
+                            <span className="question-number">السؤال {index + 1}</span>
                             <h3 className="question-text">
                                 <MathRender content={question.question_description || ''} />
                             </h3>

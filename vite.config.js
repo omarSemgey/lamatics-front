@@ -20,6 +20,9 @@ export default defineConfig({
     commonjsOptions: {
       transformMixedEsModules: true
     },
+    server: {
+      host: true
+    },
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, 'index.html'),
