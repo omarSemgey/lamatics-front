@@ -67,8 +67,9 @@ function App() {
 
   return (
     <Suspense fallback={<Loading />}>
-      <Router>
+      {/* <Router> */}
         <Routes>
+          <Route path="*" element={<Error />} />
           <Route path="/login" element={<Sign mode="login" />} />
           <Route path="/signup" element={<Sign mode="signup" />} />
 
@@ -118,8 +119,7 @@ function App() {
             </Route>
           </Route>
         </Routes>
-        <Route path="*" element={<Error />} />
-      </Router>
+      {/* </Router> */}
     </Suspense>
   );
 }
