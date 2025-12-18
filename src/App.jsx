@@ -66,62 +66,61 @@ function App() {
   useDetectTheme();
 
   return (
-    <h1>hello</h1>
-    // <Suspense fallback={<Loading />}>
-    //   <Router>
-    //     <Routes>
-    //       <Route path="/login" element={<Sign mode="login" />} />
-    //       <Route path="/signup" element={<Sign mode="signup" />} />
+    <Suspense fallback={<Loading />}>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Sign mode="login" />} />
+          <Route path="/signup" element={<Sign mode="signup" />} />
 
-    //       {/* User routes */}
-    //       <Route element={<UserRoutes />}>
-    //         <Route path="/" element={<Users />}>
-    //           <Route index element={<Hero />} />
-    //           <Route path="/quizzes" element={<QuizzesPage mode="list" />} />
-    //           <Route path="/quizzes/page/:page" element={<QuizzesPage mode="list" />} />
-    //           <Route path="/quizzes/search/:search" element={<QuizzesPage mode="search" />} />
-    //           <Route path="/quizzes/search/:search/page/:page" element={<QuizzesPage mode="search" />} />
-    //           <Route path="/quizzes/show/:quiz" element={<QuizInfo />} />
-    //           <Route path="/quizzes/quizSession/:quiz" element={<QuizSession />} />
-    //           <Route path="/quizzes/results/:quiz" element={<QuizResults />} />
-    //           <Route path="/profile" element={<Profile />} />
-    //           <Route path="/profile/update" element={<UpdateUserInfo />} />
-    //           <Route path="/profile/history" element={<QuizHistory mode="list" />} />
-    //           <Route path="/profile/history/page/:page" element={<QuizHistory mode="list" />} />
-    //           <Route path="/profile/history/search/:search" element={<QuizHistory mode="search" />} />
-    //           <Route path="/profile/history/search/:search/page/:page" element={<QuizHistory mode="search" />} />
-    //         </Route>
-    //       </Route>
+          {/* User routes */}
+          <Route element={<UserRoutes />}>
+            <Route path="/" element={<Users />}>
+              <Route index element={<Hero />} />
+              <Route path="/quizzes" element={<QuizzesPage mode="list" />} />
+              <Route path="/quizzes/page/:page" element={<QuizzesPage mode="list" />} />
+              <Route path="/quizzes/search/:search" element={<QuizzesPage mode="search" />} />
+              <Route path="/quizzes/search/:search/page/:page" element={<QuizzesPage mode="search" />} />
+              <Route path="/quizzes/show/:quiz" element={<QuizInfo />} />
+              <Route path="/quizzes/quizSession/:quiz" element={<QuizSession />} />
+              <Route path="/quizzes/results/:quiz" element={<QuizResults />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/profile/update" element={<UpdateUserInfo />} />
+              <Route path="/profile/history" element={<QuizHistory mode="list" />} />
+              <Route path="/profile/history/page/:page" element={<QuizHistory mode="list" />} />
+              <Route path="/profile/history/search/:search" element={<QuizHistory mode="search" />} />
+              <Route path="/profile/history/search/:search/page/:page" element={<QuizHistory mode="search" />} />
+            </Route>
+          </Route>
 
-    //       {/* Admin routes */}
-    //       <Route element={<AdminRoutes />}>
-    //         <Route path="/dashboard" element={<Dashboard />}>
-    //           <Route index element={<DashboardHero />} />
-    //           <Route path="/dashboard/quizzes" element={<QuizzesList mode="list" />} />
-    //           <Route path="/dashboard/quizzes/page/:page" element={<QuizzesList mode="list" />} />
-    //           <Route path="/dashboard/quizzes/search/:search" element={<QuizzesList mode="search" />} />
-    //           <Route path="/dashboard/quizzes/search/:search/page/:page" element={<QuizzesList mode="search" />} />
-    //           <Route path="/dashboard/quizzes/show/:quiz" element={<ShowQuiz />} />
-    //           <Route path="/dashboard/quizzes/create" element={<CreateQuiz />} />
-    //           <Route path="/dashboard/quizzes/update/:quiz" element={<UpdateQuiz />} />
-    //           <Route path="/dashboard/users" element={<UsersList mode="list" />} />
-    //           <Route path="/dashboard/users/page/:page" element={<UsersList mode="list" />} />
-    //           <Route path="/dashboard/users/search/:search" element={<UsersList mode="search" />} />
-    //           <Route path="/dashboard/users/search/:search/page/:page" element={<UsersList mode="search" />} />
-    //           <Route path="/dashboard/users/show/:user" element={<ShowUser />} />
-    //           <Route path="/dashboard/users/:user/submissions" element={<ShowUserSubmissions mode="list" />} />
-    //           <Route path="/dashboard/users/:user/submissions/page/:page" element={<ShowUserSubmissions mode="list" />} />
-    //           <Route path="/dashboard/users/:user/submissions/search/:search" element={<ShowUserSubmissions mode="search" />} />
-    //           <Route path="/dashboard/users/:user/submissions/search/:search/page/:page" element={<ShowUserSubmissions mode="search" />} />
-    //           <Route path="/dashboard/users/:user/results/:quiz" element={<ShowUserResults />} />
-    //           <Route path="/dashboard/users/create" element={<CreateUser />} />
-    //           <Route path="/dashboard/users/update/:user" element={<UpdateUser />} />
-    //         </Route>
-    //       </Route>
-    //     </Routes>
-    //     <Route path="*" element={<Error />} />
-    //   </Router>
-    // </Suspense>
+          {/* Admin routes */}
+          <Route element={<AdminRoutes />}>
+            <Route path="/dashboard" element={<Dashboard />}>
+              <Route index element={<DashboardHero />} />
+              <Route path="/dashboard/quizzes" element={<QuizzesList mode="list" />} />
+              <Route path="/dashboard/quizzes/page/:page" element={<QuizzesList mode="list" />} />
+              <Route path="/dashboard/quizzes/search/:search" element={<QuizzesList mode="search" />} />
+              <Route path="/dashboard/quizzes/search/:search/page/:page" element={<QuizzesList mode="search" />} />
+              <Route path="/dashboard/quizzes/show/:quiz" element={<ShowQuiz />} />
+              <Route path="/dashboard/quizzes/create" element={<CreateQuiz />} />
+              <Route path="/dashboard/quizzes/update/:quiz" element={<UpdateQuiz />} />
+              <Route path="/dashboard/users" element={<UsersList mode="list" />} />
+              <Route path="/dashboard/users/page/:page" element={<UsersList mode="list" />} />
+              <Route path="/dashboard/users/search/:search" element={<UsersList mode="search" />} />
+              <Route path="/dashboard/users/search/:search/page/:page" element={<UsersList mode="search" />} />
+              <Route path="/dashboard/users/show/:user" element={<ShowUser />} />
+              <Route path="/dashboard/users/:user/submissions" element={<ShowUserSubmissions mode="list" />} />
+              <Route path="/dashboard/users/:user/submissions/page/:page" element={<ShowUserSubmissions mode="list" />} />
+              <Route path="/dashboard/users/:user/submissions/search/:search" element={<ShowUserSubmissions mode="search" />} />
+              <Route path="/dashboard/users/:user/submissions/search/:search/page/:page" element={<ShowUserSubmissions mode="search" />} />
+              <Route path="/dashboard/users/:user/results/:quiz" element={<ShowUserResults />} />
+              <Route path="/dashboard/users/create" element={<CreateUser />} />
+              <Route path="/dashboard/users/update/:user" element={<UpdateUser />} />
+            </Route>
+          </Route>
+        </Routes>
+        <Route path="*" element={<Error />} />
+      </Router>
+    </Suspense>
   );
 }
 
