@@ -263,6 +263,7 @@ export default function CreateQuiz() {
                                     </p>
                                 )}
                                 <div className="math-preview">
+                                    <label>Question Preview</label>
                                     <MathRender content={questionRefs.current[questionIndex]?.value || ''} />
                                 </div>
                             </div>
@@ -336,6 +337,7 @@ export default function CreateQuiz() {
                                             )}
                                         </label>
                                         <div className="math-preview">
+                                            <label>Answer Preview</label>
                                             <MathRender 
                                                 content={answerRefs.current[questionIndex]?.[answerIndex]?.value || ''}
                                                 key={answerRefs.current[questionIndex]?.[answerIndex]?.value}
