@@ -338,6 +338,7 @@ export default function UpdateQuiz() {
                                         {errors[`questions.${questionIndex}.question_description`]}
                                     </p>
                                 )}
+                                <label>Question Preview</label>
                                 <div className="math-preview">
                                     <MathRender content={questionRefs.current[questionIndex]?.value || ''} />
                                 </div>
@@ -412,6 +413,7 @@ export default function UpdateQuiz() {
                                                 </p>
                                             )}
                                         </label>
+                                        <label>Answer Preview</label>
                                         <div className="math-preview">
                                             <MathRender 
                                                 content={answerRefs.current[questionIndex]?.[answerIndex]?.value || ''}
