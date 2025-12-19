@@ -154,7 +154,7 @@ export default function CreateQuiz() {
 
             [0, 1, 2, 3].forEach((answerIndex) => {
                 const answerText = answerRefs.current[questionIndex]?.[answerIndex]?.value || '';
-                const isCorrect = selectedAnswers[index] === answerIndex ? '1' : '0';
+                const isCorrect = selectedAnswers[questionIndex] === answerIndex ? '1' : '0';
 
                 formData.append(`questions[${questionIndex}][answers][${answerIndex}][question_answer_text]`, answerText);
                 formData.append(`questions[${questionIndex}][answers][${answerIndex}][correct_answer]`, isCorrect);
