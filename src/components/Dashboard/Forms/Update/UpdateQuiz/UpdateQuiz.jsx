@@ -39,20 +39,20 @@ export default function UpdateQuiz() {
                 const initialSelectedAnswers = {};
                 const initialPreviewUrls = {};
 
-                fetchedQuestions.forEach((question, questionIndex) => {
+                fetchedQuestions.forEach((question) => {
+                    const qId = question.quiz_question_id;
                     question.question_answers?.forEach((answer, answerIndex) => {
                         if (answer.correct_answer === 1) {
-                            initialSelectedAnswers[questionIndex] = answerIndex;
+                            initialSelectedAnswers[qId] = answerIndex;
                         }
                     });
 
-                    initialPreviewUrls[question.quiz_question_id] = question.question_image;
+                    initialPreviewUrls[qId] = question.question_image;
                 });
 
                 setQuestions(fetchedQuestions);
                 setSelectedAnswers(initialSelectedAnswers);
                 setPreviewUrls(initialPreviewUrls);
-
                 setIsLoading(false);
             } catch (error) {
                 console.error(error);
@@ -125,15 +125,15 @@ export default function UpdateQuiz() {
         }
     }
 
-    function handleCheckboxChange(questionIndex, answerIndex){
+    function handleCheckboxChange(questionId, answerIndex){
         setErrors(prev => ({
             ...prev,
-            [`questions.${questionIndex}.answers.${answerIndex}.correct_answer`]: undefined
+            [`questions.${questionId}.answers.${answerIndex}.correct_answer`]: undefined
         }));
 
         setSelectedAnswers(prev => ({
-        ...prev,
-        [questionIndex]: answerIndex
+            ...prev,
+            [questionId]: answerIndex
         }));
     }
 
@@ -403,8 +403,8 @@ export default function UpdateQuiz() {
                                         <label>
                                             Correct:
                                             <input type="checkbox"
-                                                checked={selectedAnswers[questionIndex] === answerIndex}
-                                                onChange={() => handleCheckboxChange(questionIndex, answerIndex)}
+                                                checked={selectedAnswers[question.quiz_question_id || question.temp_id] === answerIndex}
+                                                onChange={() => handleCheckboxChange(question.quiz_question_id || question.temp_id, answerIndex)}
                                             />
                                             {errors[`questions.${questionIndex}.answers.${answerIndex}.correct_answer`] && (
                                                 <p className='error'>
