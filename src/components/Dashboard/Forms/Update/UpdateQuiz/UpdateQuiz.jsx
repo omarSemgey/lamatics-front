@@ -29,31 +29,35 @@ export default function UpdateQuiz() {
 
     useEffect(() => {
         const fetchQuizData = async () => {
-            await axios.get(`/quizzes/${id.quiz}`)  
-            .then((response) => {
-                setQuiz(response.data.quiz);
+            try {
+                const response = await axios.get(`/quizzes/${id.quiz}`);
+                const quizData = response.data.quiz;
 
-                setQuestions(response.data.quiz.quiz_questions || [])
+                setQuiz(quizData);
 
+                const fetchedQuestions = quizData.quiz_questions || [];
                 const initialSelectedAnswers = {};
+                const initialPreviewUrls = {};
 
-                response.data.quiz.quiz_questions?.forEach((question, questionIndex) => {
+                fetchedQuestions.forEach((question, questionIndex) => {
                     question.question_answers?.forEach((answer, answerIndex) => {
-                        if(answer.correct_answer === 1) {
+                        if (answer.correct_answer === 1) {
                             initialSelectedAnswers[questionIndex] = answerIndex;
                         }
                     });
 
-                    setPreviewUrls(prev => ({
-                        ...prev,
-                        [question.quiz_question_id]: question.question_image
-                    }));
+                    initialPreviewUrls[question.quiz_question_id] = question.question_image;
                 });
 
+                setQuestions(fetchedQuestions);
                 setSelectedAnswers(initialSelectedAnswers);
+                setPreviewUrls(initialPreviewUrls);
 
                 setIsLoading(false);
-            });
+            } catch (error) {
+                console.error(error);
+                setIsLoading(false);
+            }
         };
 
         fetchQuizData();
@@ -250,7 +254,7 @@ export default function UpdateQuiz() {
         });
     }
 
-    if (isLoading) {
+    if (isLoading || !questions.length) {
         return <Loading></Loading>;
     }
 
