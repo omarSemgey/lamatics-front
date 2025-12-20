@@ -86,6 +86,7 @@ export default function Profile() {
       onClose={handleLogoutCancel}
       onConfirm={handleLogoutConfirm}
       message="هل انت متاكد من انك تريد تسجيل الخروج؟"
+      language = "ar"
     />
     </>
   )

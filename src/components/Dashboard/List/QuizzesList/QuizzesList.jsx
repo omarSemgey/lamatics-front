@@ -214,6 +214,7 @@ export default function QuizzesList({mode}) {
             onClose={handleDeleteCancel}
             onConfirm={handleDeleteConfirm}
             message="Are you sure you want to delete this quiz?"
+            language = "en"
         />
         </>
     );

@@ -134,6 +134,7 @@ export default function QuizSession() {
             onClose={handleSubmitCancel}
             onConfirm={handleSubmitConfirm}
             message="هل أنت متأكد أنك تريد تسليم الامتحان؟"
+            language = "ar"
         />
         </>
     );
