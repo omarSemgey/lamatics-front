@@ -34,7 +34,6 @@ export default function Profile() {
   async function handleLogoutConfirm(){
     axios.post('/auth/logout')
     .then(() => {
-        // Deleting tokens is handled by the backend
         localStorage.removeItem('isAuthenticated')
         setIsLoggingOut(false);
         navigate('/');

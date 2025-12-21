@@ -44,6 +44,11 @@
                     &:hover {
                         background: #ff1a1a;
                     }
+
+                    &:disabled{
+                        opacity: 0.6;
+                        cursor: not-allowed;
+                    }
                 }
 
                 &.cancel {

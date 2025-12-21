@@ -15,7 +15,8 @@ export default function LeftNav() {
     const users = useRef();
 
     const [isNavOpen, setIsNavOpen] = useState(false);
-    const [isLoggingOut, setIsLoggingOut] = useState(false)
+    const [isLoggingOut, setIsLoggingOut] = useState(false);
+    const [isWorking, setIsWorking] = useState(false);
 
     function toggleNav()  {
         setIsNavOpen(!isNavOpen);
@@ -38,14 +39,18 @@ export default function LeftNav() {
         setIsLoggingOut(true);
     }
 
-    async function handleLogoutConfirm(){
-        axios.post('/auth/logout')
-        .then(() => {
-            // Deleting tokens is handled by the backend
-            localStorage.removeItem('isAuthenticated')
+    async function handleLogoutConfirm() {
+        setIsWorking(true);
+        try {
+            await axios.post('/auth/logout');
+            localStorage.removeItem('isAuthenticated');
             setIsLoggingOut(false);
             navigate('/');
-        });
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsWorking(false);
+        }
     }
 
     function handleLogoutCancel(){
@@ -120,6 +125,7 @@ export default function LeftNav() {
             onConfirm={handleLogoutConfirm}
             message="Are you sure you want to log out?"
             language = "en"
+            isWorking={isWorking}
         />
         </>
     )

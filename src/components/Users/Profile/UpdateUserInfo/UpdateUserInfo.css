@@ -83,7 +83,8 @@
                 min-width: 172px;
 
                 &:disabled{
-                    background-color: #BDBDBD;
+                    opacity: 0.6;
+                    /* background-color: #BDBDBD; */
                     cursor: not-allowed;
                 }
             }

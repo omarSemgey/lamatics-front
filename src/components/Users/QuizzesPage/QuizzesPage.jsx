@@ -89,6 +89,16 @@ export default function QuizzesPage({mode}) {
         )
     }
 
+    if(quizzes.length == 0){
+        return (
+            <>
+            <div className='search-page empty'>
+                <h1>ليس هناك اي امتحانات متوفرة في الوقت الحالي.</h1>
+        </div>
+            </>
+        )
+    }
+
     return (
         <>
         <div className="quizzes-page">

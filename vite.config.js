@@ -6,5 +6,10 @@ export default defineConfig({
   base: '/',
   build: {
     outDir: 'dist'
-  }
+  },
+    server: {
+    proxy: {
+      '/api': 'http://localhost:8000',
+    },
+  },
 });

@@ -225,7 +225,8 @@ export default function UpdateQuiz() {
 
             question.question_answers.forEach((answer, answerIndex) => {
                 const answerText = answerRefs.current[index]?.[answerIndex]?.value || '';
-                const isCorrect = selectedAnswers[index] === answerIndex ? '1' : '0';
+                const questionId = question.quiz_question_id || question.temp_id;
+                const isCorrect = selectedAnswers[questionId] === answerIndex ? '1' : '0';
 
                 formData.append(`questions[${index}][answers][${answerIndex}][question_answer_id]`, 
                     answer.question_answer_id || ''

@@ -3,24 +3,35 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import useDetectTheme from "./hooks/useDetectTheme";
 import Loading from './components/Loading/Loading';
 
-// Lazy load common components
+// User core 
+
+import Users from "./components/Users/Users";
+import Hero from "./components/Users/Hero/Hero";
+import QuizzesPage from "./components/Users/QuizzesPage/QuizzesPage";
+import QuizInfo from "./components/Users/QuizInfo/QuizInfo";
+import Profile from "./components/Users/Profile/Profile";
+
+// Route guards
+import UserRoutes from "./protected routes/UserRoutes";
+import AdminRoutes from "./protected routes/AdminRoutes";
+
+// Admin core
+import Dashboard from "./components/Dashboard/Dashboard";
+import DashboardHero from "./components/Dashboard/DashboardHero/DashboardHero";
+import QuizzesList from "./components/Dashboard/List/QuizzesList/QuizzesList";
+import UsersList from "./components/Dashboard/List/UsersList/UsersList";
+import CreateUser from "./components/Dashboard/Forms/Create/CreateUser/CreateUser";
+import UpdateUser from "./components/Dashboard/Forms/Update/UpdateUser/UpdateUser";
+
+// Lazy load rarely visited main components
 const Error = lazy(() => import("./components/Error/Error"));
 const Sign = lazy(() => import("./components/Sign/sign"));
 
-// Lazy load protected routes
-const UserRoutes = lazy(() => import("./protected routes/UserRoutes"));
-const AdminRoutes = lazy(() => import("./protected routes/AdminRoutes"));
-
-// Lazy load user components
-const Users = lazy(() => import("./components/Users/Users"));
-const Hero = lazy(() => import("./components/Users/Hero/Hero"));
-const QuizzesPage = lazy(() => import("./components/Users/QuizzesPage/QuizzesPage"));
-const QuizInfo = lazy(() => import("./components/Users/QuizInfo/QuizInfo"));
-const Profile = lazy(() => import("./components/Users/Profile/Profile"));
+// Lazy load  rarely visited user components
 const QuizHistory = lazy(() => import("./components/Users/Profile/QuizHistory/QuizHistory"));
 const UpdateUserInfo = lazy(() => import("./components/Users/Profile/UpdateUserInfo/UpdateUserInfo"));
 
-// Components using katex with dynamic imports
+// Lazy load heavy  user components
 const QuizSession = lazy(() => 
   Promise.all([
     import("./components/Users/QuizSession/QuizSession"),
@@ -35,19 +46,26 @@ const QuizResults = lazy(() =>
   ]).then(([module]) => module)
 );
 
-// Lazy load admin components
-const Dashboard = lazy(() => import("./components/Dashboard/Dashboard"));
-const DashboardHero = lazy(() => import("./components/Dashboard/DashboardHero/DashboardHero"));
-const QuizzesList = lazy(() => import("./components/Dashboard/List/QuizzesList/QuizzesList"));
-const UsersList = lazy(() => import("./components/Dashboard/List/UsersList/UsersList"));
-const UpdateUser = lazy(() => import("./components/Dashboard/Forms/Update/UpdateUser/UpdateUser"));
-const UpdateQuiz = lazy(() => import("./components/Dashboard/Forms/Update/UpdateQuiz/UpdateQuiz"));
-const CreateUser = lazy(() => import("./components/Dashboard/Forms/Create/CreateUser/CreateUser"));
-const CreateQuiz = lazy(() => import("./components/Dashboard/Forms/Create/CreateQuiz/CreateQuiz"));
-const ShowUser = lazy(() => import("./components/Dashboard/Show/ShowUser/ShowUser"));
+// Lazy load rarely visited admin components
+const ShowUser = lazy(() => import("./components/Dashboard/Show/ShowUser/ShowUser"))
 const ShowUserSubmissions = lazy(() => import("./components/Dashboard/Show/ShowUser/ShowUserSubmissions/ShowUserSubmissions"));
 
-// Katex-dependent admin components
+// Lazy load heavy admin components
+
+const CreateQuiz = lazy(() => 
+  Promise.all([
+    import("./components/Dashboard/Forms/Create/CreateQuiz/CreateQuiz"),
+    import("katex")
+  ]).then(([module]) => module)
+);
+
+const UpdateQuiz = lazy(() => 
+  Promise.all([
+    import("./components/Dashboard/Forms/Update/UpdateQuiz/UpdateQuiz"),
+    import("katex")
+  ]).then(([module]) => module)
+);
+
 const ShowQuiz = lazy(() => 
   Promise.all([
     import("./components/Dashboard/Show/ShowQuiz/ShowQuiz"),
