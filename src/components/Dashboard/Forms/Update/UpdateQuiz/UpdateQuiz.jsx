@@ -43,7 +43,7 @@ export default function UpdateQuiz() {
                 fetchedQuestions.forEach((question) => {
                     const qId = Number(question.quiz_question_id);
                     question.question_answers?.forEach((answer, answerIndex) => {
-                        if (answer.correct_answer === 1) {
+                        if (Boolean(answer.correct_answer)) {
                             initialSelectedAnswers[qId] = answerIndex;
                             console.log("Right Answere Here", [qId, answer, answerIndex]);
                         }
