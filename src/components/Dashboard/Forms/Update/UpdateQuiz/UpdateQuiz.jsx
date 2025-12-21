@@ -38,22 +38,18 @@ export default function UpdateQuiz() {
                 const fetchedQuestions = quizData.quiz_questions || [];
                 const initialSelectedAnswers = {};
                 const initialPreviewUrls = {};
-                console.log("Fetched Questions:", fetchedQuestions);
 
                 fetchedQuestions.forEach((question) => {
-                    const qId = question.quiz_question_id;
+                    const qId = Number(question.quiz_question_id);
                     question.question_answers?.forEach((answer, answerIndex) => {
                         if (answer.correct_answer === 1) {
                             initialSelectedAnswers[qId] = answerIndex;
-                            console.log("Right Answere Here", [question, qId, question.question_answers, answer, answerIndex, initialSelectedAnswers]);
                         }
-                        console.log("Wrong Answere Here:", [question, qId, question.question_answers, answer, answerIndex, initialSelectedAnswers]);
                     });
 
                     initialPreviewUrls[qId] = question.question_image;
                 });
 
-                console.log("Initial Selected Answers:", initialSelectedAnswers);
 
                 setQuestions(fetchedQuestions);
                 setSelectedAnswers(initialSelectedAnswers);
@@ -216,8 +212,8 @@ export default function UpdateQuiz() {
         formData.append("_method", "PUT");
 
         questions.forEach((question, index) => {
-            const questionId = question.quiz_question_id || question.temp_id;
-            formData.append(`questions[${index}][quiz_question_id]`, question.quiz_question_id || '');
+            const questionId = Number(question.quiz_question_id || question.temp_id);
+            formData.append(`questions[${index}][quiz_question_id]`, Number(question.quiz_question_id) || '');
             formData.append(`questions[${index}][question_description]`, questionRefs.current[index]?.value || '');
 
             if (questionImages[questionId]) {
@@ -230,7 +226,7 @@ export default function UpdateQuiz() {
 
             question.question_answers.forEach((answer, answerIndex) => {
                 const answerText = answerRefs.current[index]?.[answerIndex]?.value || '';
-                const questionId = question.quiz_question_id || question.temp_id;
+                const questionId = Number(question.quiz_question_id || question.temp_id);
                 const isCorrect = selectedAnswers[questionId] === answerIndex ? '1' : '0';
 
                 formData.append(`questions[${index}][answers][${answerIndex}][question_answer_id]`, 
@@ -310,7 +306,7 @@ export default function UpdateQuiz() {
                         </div>
 
                         {questions?.map((question, questionIndex) => {
-                        const questionId = question.quiz_question_id || question.temp_id;
+                        const questionId = Number(question.quiz_question_id || question.temp_id);
                         return(
                         <div key={questionId} className="question-card">
                             <div className='question-header'>
@@ -410,8 +406,8 @@ export default function UpdateQuiz() {
                                         <label>
                                             Correct:
                                             <input type="checkbox"
-                                                checked={selectedAnswers[question.quiz_question_id || question.temp_id] === answerIndex}
-                                                onChange={() => handleCheckboxChange(question.quiz_question_id || question.temp_id, answerIndex)}
+                                                checked={selectedAnswers[questionId] === answerIndex}
+                                                onChange={() => handleCheckboxChange(questionId || question.temp_id, answerIndex)}
                                             />
                                             {errors[`questions.${questionIndex}.answers.${answerIndex}.correct_answer`] && (
                                                 <p className='error'>

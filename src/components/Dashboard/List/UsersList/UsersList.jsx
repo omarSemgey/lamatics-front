@@ -37,7 +37,6 @@ export default function UsersList({mode}) {
                 params : { page : params.page || 1 }
             })
             .then((response) => {
-                console.log(response.data.users.data);
                 setData(response.data.users.data);
                 setLastPage(response.data.users.last_page);
                 setCount(response.data.users.total);
