@@ -124,7 +124,6 @@ export default function LeftNav() {
             onClose={handleLogoutCancel}
             onConfirm={handleLogoutConfirm}
             message="Are you sure you want to log out?"
-            language = "en"
             isWorking={isWorking}
         />
         </>

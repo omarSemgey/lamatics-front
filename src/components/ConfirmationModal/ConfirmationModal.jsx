@@ -1,7 +1,7 @@
 import './ConfirmationModal.css'
 import { useEffect } from 'react';
 
-export default function ConfirmationModal({ isOpen, onClose, onConfirm, message, language, isWorking }) {
+export default function ConfirmationModal({ isOpen, onClose, onConfirm, message, isWorking }) {
     useEffect(() => {
         const handleEscape = (e) => {
             if (e.key === 'Escape') onClose();
@@ -29,15 +29,15 @@ export default function ConfirmationModal({ isOpen, onClose, onConfirm, message,
                         disabled={isWorking}
                     >
                         {isWorking
-                            ? language === 'ar' ? 'جارٍ المعالجة...' : 'Loading...'
-                            : language === 'ar' ? 'نعم' : 'Confirm'}
+                            ?  'Loading...'
+                            : 'Confirm'}
                     </button>
                     <button
                         className="modal-button cancel"
                         onClick={onClose}
                         disabled={isWorking}
                     >
-                        {language === 'ar' ? 'الغاء' : 'Cancel'}
+                        Cancel
                     </button>
                 </div>
             </div>

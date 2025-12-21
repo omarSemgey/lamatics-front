@@ -3,7 +3,6 @@
     background-color: var(--color-background);
     color: var(--color-text);
     min-height: 100vh;
-    direction: rtl;
 
     .quiz-header {
         margin-bottom: 3rem;

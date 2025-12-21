@@ -55,7 +55,7 @@ export default function QuizzesPage({mode}) {
         }
     },[params,mode]);
 
-    function handleFifficulty(difficulty){
+    function handleDifficulity(difficulty){
         if(difficulty == 1){
             return 'Easy'
         }else if(difficulty == 2){
@@ -77,24 +77,24 @@ export default function QuizzesPage({mode}) {
         return <Loading></Loading>
     }
 
-    if(error){
+    if (error) {
         return (
             <>
             <div className='search-page empty'>
-                <h1>لم يتم العثور على اي نتائج</h1>
-                <p>حاول التاكد من اسم الاختبار والمحاولة مرة اخرى</p>
-                <Link to={`/quizzes`}>ارجع الى الصفحة الرئيسية</Link>
-        </div>
+                <h1>No results found</h1>
+                <p>Please check the quiz name and try again</p>
+                <Link to={`/quizzes`}>Return to Home Page</Link>
+            </div>
             </>
         )
     }
 
-    if(quizzes.length == 0){
+    if (quizzes.length == 0) {
         return (
             <>
             <div className='search-page empty'>
-                <h1>ليس هناك اي امتحانات متوفرة في الوقت الحالي.</h1>
-        </div>
+                <h1>There are no quizzes available at the moment.</h1>
+            </div>
             </>
         )
     }
@@ -102,26 +102,26 @@ export default function QuizzesPage({mode}) {
     return (
         <>
         <div className="quizzes-page">
-        <div className="page-header">
-            <h1 className="page-title">الأمتحانات</h1>
-            <select onChange={handleSort} ref={sort} className='sort'>
-                <option value="1">ترتيب تصاعدي حسب الابجدية</option>
-                <option value="2">ترتيب تنازلي حسب الابجدية</option>
-                <option value="3">ترتيب من الاقل صعوبة</option>
-                <option value="4">ترتيب من الاعلى صعوبة</option>
-            </select>
-        </div>
-        {quizzes.map((quiz) => (
-        <Link key={quiz.quiz_id} to={`/quizzes/show/${quiz.quiz_id}`}>
-            <div className={`quiz-container ${handleFifficulty(quiz.quiz_difficulty).toLowerCase()}`}>
-                <div className='difficulty-circle'>{handleFifficulty(quiz.quiz_difficulty)}</div>
-                <div className="quiz-details">
-                    <h3 className="quiz-title">{quiz.quiz_title}</h3>
-                    <p className="quiz-description">{quiz.quiz_description}</p>
-                </div>
+            <div className="page-header">
+                <h1 className="page-title">Quizzes</h1>
+                <select onChange={handleSort} ref={sort} className='sort'>
+                    <option value="1">Ascending Alphabetical Order</option>
+                    <option value="2">Descending Alphabetical Order</option>
+                    <option value="3">From Least Difficult</option>
+                    <option value="4">From Most Difficult</option>
+                </select>
             </div>
-        </Link>
-        ))}
+            {quizzes.map((quiz) => (
+            <Link key={quiz.quiz_id} to={`/quizzes/show/${quiz.quiz_id}`}>
+                <div className={`quiz-container ${handleDifficulity(quiz.quiz_difficulty).toLowerCase()}`}>
+                    <div className='difficulty-circle'>{handleDifficulity(quiz.quiz_difficulty)}</div>
+                    <div className="quiz-details">
+                        <h3 className="quiz-title">{quiz.quiz_title}</h3>
+                        <p className="quiz-description">{quiz.quiz_description}</p>
+                    </div>
+                </div>
+            </Link>
+            ))}
         </div>
         {
             IsPagination &&
@@ -129,9 +129,10 @@ export default function QuizzesPage({mode}) {
                 path={mode == 'list' ? '/quizzes' : `/quizzes/search/${params.search}`} 
                 page={params.page} 
                 lastPage={lastPage}
-            ></Pagination>
+            />
         }
         </>
     );
+
 }
 

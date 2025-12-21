@@ -87,7 +87,7 @@ export default function QuizSession() {
                 {questions.map((question, index) => (
                     <div key={question.quiz_question_id} className="question-card">
                         <div className="question-header">
-                            <span className="question-number">السؤال {index + 1}</span>
+                            <span className="question-number">Question {index + 1}</span>
                             <h3 className="question-text">
                                 <MathRender content={question.question_description || ''} />
                             </h3>
@@ -97,13 +97,13 @@ export default function QuizSession() {
                             <div className="question-image">
                                 <img 
                                     src={question.question_image} 
-                                    alt={`السؤال البصري ${index + 1}`}
+                                    alt={`Visual Question ${index + 1}`}
                                 />
                             </div>
                         )}
 
                         <div className="answers-list">
-                            {question.question_answers?.map((answer,answerIndex) => (
+                            {question.question_answers?.map((answer, answerIndex) => (
                                 <div
                                     key={answer.question_answer_id}
                                     className={`answer ${selectedAnswers[question.quiz_question_id] === answer.question_answer_id ? 'selected' : ''}`}
@@ -123,9 +123,9 @@ export default function QuizSession() {
 
                 <div className="submit-container">
                     <button className="submit-quiz-button" onClick={handleSubmit}>
-                        تسليم الإجابات
+                        Submit Answers
                     </button>
-                    {errors['answers'] && <p className='error'>الرجاء الإجابة على جميع الأسئلة قبل التسليم!</p>}
+                    {errors['answers'] && <p className='error'>Please answer all questions before submitting!</p>}
                 </div>
             </div>
         </div>
@@ -133,8 +133,7 @@ export default function QuizSession() {
             isOpen={isSubmitting}
             onClose={handleSubmitCancel}
             onConfirm={handleSubmitConfirm}
-            message="هل أنت متأكد أنك تريد تسليم الامتحان؟"
-            language = "ar"
+            message="Are you sure you want to submit the quiz?"
         />
         </>
     );

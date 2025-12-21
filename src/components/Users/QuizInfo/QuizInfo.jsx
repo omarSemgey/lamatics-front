@@ -28,23 +28,14 @@ export default function QuizInfo(){
     return <Loading></Loading>;
   }
 
-  function handleDifficultyClass(difficulty){
+
+  function handleDifficulty(difficulty){
     if(difficulty == 1){
         return 'Easy'
     }else if(difficulty == 2){
         return 'Medium'
     }else{
         return 'Hard'
-    }
-  }
-
-  function handleDifficulty(difficulty){
-    if(difficulty == 1){
-        return 'سهل'
-    }else if(difficulty == 2){
-        return 'متوسط'
-    }else{
-        return 'صعب'
     }
   }
 
@@ -56,20 +47,24 @@ export default function QuizInfo(){
           <p className="quiz-description">{quiz.quiz_description}</p>
           <div className="quiz-details">
             <div className="detail-item">
-              <strong>الصعوبة : </strong>
-              <span className={`difficulty ${handleDifficultyClass(quiz.quiz_difficulty).toLowerCase()}`}>{handleDifficulty(quiz.quiz_difficulty)}</span>
+              <strong>Difficulty: </strong>
+              <span className={`difficulty ${handleDifficulty(quiz.quiz_difficulty).toLowerCase()}`}>
+                {handleDifficulty(quiz.quiz_difficulty)}
+              </span>
             </div>
             <div className="detail-item">
-              <strong>عدد الاسئلة : </strong> 
+              <strong>Number of Questions: </strong> 
               <span className="questions-count">{quiz.quiz_questions.length}</span>
             </div>
             <div className="detail-item">
-              <strong>الحالة : </strong>
-              <span className={`status ${completed ? 'completed' : 'not-completed'}`}>{completed ? 'تم الاتمام' : 'لم يتم الاتمام'}</span>
+              <strong>Status: </strong>
+              <span className={`status ${completed ? 'completed' : 'not-completed'}`}>
+                {completed ? 'Completed' : 'Not Completed'}
+              </span>
             </div>
           </div>
           <Link to={completed ? `/quizzes/results/${quizId}` : `/quizzes/quizSession/${quizId}`}>
-            {completed ? 'اظهر النتائج': ' ابدأ الامتحان'}
+            {completed ? 'Show Results' : 'Start Quiz'}
           </Link>
         </div>
       </div>

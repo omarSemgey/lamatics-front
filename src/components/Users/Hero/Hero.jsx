@@ -24,12 +24,13 @@ export default function Hero() {
   if(role > 1){
     navigate('/dashboard');
   }
+
   return (
     <div className="hero">
       <div className="hero-content">
-        <h1>اختبر مهاراتك العلمية</h1>
-        <p>أكثر من <span className="count">{count}</span> طالب يختبرون علمهم الآن</p>
-        <Link to={role == 1 ? '/quizzes' : '/login'}>!ابدأ الاختبار</Link>
+        <h1>Test Your Scientific Skills</h1>
+        <p>More than <span className="count">{count}</span> students are testing their knowledge now</p>
+        <Link to={role == 1 ? '/quizzes' : '/login'}>Start the Quiz!</Link>
       </div>
     </div>
   );

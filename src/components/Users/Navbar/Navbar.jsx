@@ -26,38 +26,38 @@ export default function Navbar(){
         if(search.current.value !== '') navigate(`/quizzes/search/${search.current.value}`)
     }
 
-    return(
+    return (
         <>
-        <button className="mobile-nav-toggle" onClick={toggleNav}>
-            ☰
-        </button>
-        <div ref={header} className={`navbar ${isNavOpen ? 'active' : ''}`}>
-            <div className='logo'>
-                <h2><Link to='/'>Lamatics</Link></h2>
+            <button className="mobile-nav-toggle" onClick={toggleNav}>
+                ☰
+            </button>
+            <div ref={header} className={`navbar ${isNavOpen ? 'active' : ''}`}>
+                <div className='logo'>
+                    <h2><Link to='/'>Lamatics</Link></h2>
+                </div>
+                <ul className='links'>
+                    <li className='link search'>
+                        <form action="" onSubmit={(event) => handleSearch(event)}>
+                            <input ref={search} type="text" placeholder='Search for a quiz...'/>
+                            <FontAwesomeIcon icon={faSearch} className='icon'></FontAwesomeIcon>
+                        </form>
+                    </li>
+                    <li className='link'>
+                        <Link to={role == 1 ? '/quizzes' : '/'}>
+                            Home
+                        </Link>
+                    </li>
+                    <li className='link theme' onClick={useThemeSwitch}>
+                        <FontAwesomeIcon className='icon moon' icon={faMoon}></FontAwesomeIcon>
+                        <FontAwesomeIcon className='icon sun' icon={faSun}></FontAwesomeIcon>
+                    </li>
+                    <li className='link icon'>
+                        <Link to={role == 1 ? '/profile' : '/login'}>
+                            <FontAwesomeIcon icon={faUserAlt}></FontAwesomeIcon>
+                        </Link>
+                    </li>
+                </ul>
             </div>
-            <ul className='links'>
-            <li className='link search'>
-                <form action="" onSubmit={(event)=>handleSearch(event)}>
-                    <input ref={search} type="text" placeholder='ابحث عن امتحان...'/>
-                    <FontAwesomeIcon icon={faSearch} className='icon'></FontAwesomeIcon>
-                </form>
-            </li>
-            <li className='link'>
-                <Link to={role == 1 ?'/quizzes' : '/'}>
-                    الصفحة الرئيسية
-                </Link>
-            </li>
-            <li className='link theme' onClick={useThemeSwitch}>
-                <FontAwesomeIcon className='icon moon' icon={faMoon}></FontAwesomeIcon>
-                <FontAwesomeIcon className='icon sun' icon={faSun}></FontAwesomeIcon>
-            </li>
-            <li className='link icon'>
-                <Link to={role == 1 ?'/profile' : '/login'}>
-                    <FontAwesomeIcon icon={faUserAlt}></FontAwesomeIcon>
-                </Link>
-            </li>
-            </ul>
-        </div>
         </>
     )
-    }
+}

@@ -12,6 +12,7 @@ export default function Login(){
     const [notFoundError,setNotFoundError] = useState(false);
     const [emailError,setEmailError] = useState(false);
     const [passwordError,setPasswordError] = useState(false);
+    const [unknownError, setUnknownError] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false)
 
     function login(event){
@@ -41,6 +42,8 @@ export default function Login(){
             }
 
             if (errorCode === 401) setNotFoundError(true);
+
+            if (errorCode !== 401 && errorCode !== 422) setUnknownError(true);
         }).finally(()=>{
             setIsSubmitting(false)
         })
@@ -49,39 +52,40 @@ export default function Login(){
     return(
         <>
             <div className='header'>
-                <h1>تسجيل دخول</h1>
-                <span> سجل دخول او <Link to={'/signup'}> انشئ حساب </Link> </span>
+                <h1>Login</h1>
+                <span> Login or<Link to={'/signup'}> Create Account </Link> </span>
             </div>
 
             <form>
                 <div>
-                    <label>عنوان البريد الالكتروني</label>
+                    <label>Email Address</label>
                     <input 
                         required
                         ref={email} 
                         type="email" 
-                        placeholder='عنوان البريد الالكتروني'
+                        placeholder='Email Address'
                         pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,6}$"
                         maxLength={320}
                     />
-                    { emailError && <p className='error'> يرجى إدخال عنوان بريد إلكتروني صالح (حد أقصى 320 حرفًا) </p> }
+                    { emailError && <p className='error'> Please enter a valid emain adress.</p> }
                 </div>
 
                 <div>
-                    <label>كلمة المرور</label>
+                    <label>Password</label>
                     <input 
                         required
                         ref={password} 
                         type="password" 
-                        placeholder='كلمة المرور'
+                        placeholder='Password'
                         pattern="^(?=.*[A-Za-z])(?=.*\d).{6,}$"
                         minLength={6}
                     />
-                    { passwordError && <p className='error'> كلمة المرور يجب أن تحتوي على الأقل على 6 أحرف </p> }
-                    { notFoundError && <p className='error'> كلمة المرور او عنوان البريد الالكتروني غير صحيح </p> }
+                    { passwordError && <p className='error'> Passwrod need to be at least 6 characters </p> }
+                    { notFoundError && <p className='error'> Email adress or password is incorrect </p> }
+                    { unknownError && <p> Unkown errror please try again </p> }
                 </div>
 
-                <button type="submit" disabled={isSubmitting} onClick={login}>تسجيل دخول</button>
+                <button type="submit" disabled={isSubmitting} onClick={login}>Login</button>
             </form>
         </>
     )

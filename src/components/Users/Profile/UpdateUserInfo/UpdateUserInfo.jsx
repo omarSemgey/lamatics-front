@@ -102,17 +102,16 @@ export default function UpdateUserInfo() {
         <div className='update-profile'>
             <div className='container'>
                 <div className='header'>
-                    <h1>تعديل معلومات الحساب الشخصي</h1>
+                    <h1>Edit Personal Account Information</h1>
                 </div>
 
                 <form>
                     <div>
-                        <label>اسم المستخدم</label>
+                        <label>Username</label>
                         <input 
                             ref={name} 
                             type="text" 
-                            dir="rtl" 
-                            placeholder='اسم المستخدم'
+                            placeholder='Username'
                             pattern="^[\p{L}0-9_\s]{3,25}$"
                             defaultValue={data.name}
                             minLength={3}
@@ -122,11 +121,11 @@ export default function UpdateUserInfo() {
                     </div>
 
                     <div>
-                        <label>عنوان البريد الالكتروني</label>
+                        <label>Email Address</label>
                         <input 
                             ref={email} 
                             type="email" 
-                            placeholder='عنوان البريد الالكتروني'
+                            placeholder='Email Address'
                             pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,6}$"
                             defaultValue={data.email}
                             maxLength={320}
@@ -135,18 +134,18 @@ export default function UpdateUserInfo() {
                     </div>
 
                     <div>
-                        <label>كلمة المرور</label>
+                        <label>Password</label>
                         <input 
                             ref={password} 
                             type="password" 
-                            placeholder='كلمة المرور'
+                            placeholder='Password'
                             pattern="^(?=.*[A-Za-z])(?=.*\d).{6,}$"
                             minLength={6}
                         />
                         {errors.password && <p className='error'>{errors.password}</p>}
                     </div>
 
-                    <button type="submit" disabled={isSubmitting} onClick={UpdateUserInfo}>تعديل الحساب</button>
+                    <button type="submit" disabled={isSubmitting} onClick={UpdateUserInfo}>Update Account</button>
                 </form>
             </div>
         </div>
