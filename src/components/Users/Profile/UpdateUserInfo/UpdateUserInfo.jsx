@@ -111,7 +111,6 @@ export default function UpdateUserInfo() {
                         <input 
                             ref={name} 
                             type="text" 
-                            dir="rtl" 
                             placeholder='اسم المستخدم'
                             pattern="^[\p{L}0-9_\s]{3,25}$"
                             defaultValue={data.name}

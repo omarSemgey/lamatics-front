@@ -5,7 +5,6 @@ import 'katex/dist/katex.min.css';
 export default function MathRender({ content }) {
     const renderContent = (text) => {
     try {
-      // Improved regex to handle inline math with special characters
         const parts = text.split(/(\$\$.*?\$\$|\$.*?\$)/g);
 
         return parts.map((part, index) => {

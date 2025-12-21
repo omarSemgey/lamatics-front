@@ -202,7 +202,6 @@ export default function UsersList({mode}) {
             onClose={handleDeleteCancel}
             onConfirm={handleDeleteConfirm}
             message="Are you sure you want to delete this user?"
-            language = "en"
         />
         </>
     );
