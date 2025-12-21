@@ -48,44 +48,45 @@ export default function Profile() {
     return <Loading></Loading>;
   }
 
-  return(
-    <>
-    <div className='profile'>
-      <div className="user-profile-container">
-        <div className="user-profile-card">
-          <h1 className="user-profile-title"> : الملف الشخصي</h1>
+  return (
+      <>
+      <div className='profile'>
+        <div className="user-profile-container">
+          <div className="user-profile-card">
+            <h1 className="user-profile-title">Profile:</h1>
 
-          <div className="user-detail">
-            <span className="detail-value">{data.name}</span>
-            <span className="detail-label"> : الاسم</span>
-          </div>
+            <div className="user-detail">
+              <span className="detail-value">{data.name}</span>
+              <span className="detail-label">Name:</span>
+            </div>
 
-          <div className="user-detail">
-            <span className="detail-value">{data.email}</span>
-            <span className="detail-label"> : البريد الالكتروني</span>
-          </div>
+            <div className="user-detail">
+              <span className="detail-value">{data.email}</span>
+              <span className="detail-label">Email:</span>
+            </div>
 
-          <div className="user-detail">
-            <span className="detail-value">{data.user_submissions_count}</span>
-            <span className="detail-label"> : عدد الامتحانات الماخوذة</span>
-          </div>
-          <div className="actions">
-            <Link to={`/profile/history`} className="submissions link">سجل الاختبارات</Link>
-            <Link to={`/profile/update`} className="update link">تعديل الملف الشخصي</Link>
-            <button className="logout link" onClick={handleLogout}>
-              <FontAwesomeIcon className='icon' icon={faSignOutAlt}></FontAwesomeIcon>
-              تسجيل الخروج
-            </button>          
+            <div className="user-detail">
+              <span className="detail-value">{data.user_submissions_count}</span>
+              <span className="detail-label">Quizzes Taken:</span>
+            </div>
+
+            <div className="actions">
+              <Link to={`/profile/history`} className="submissions link">Quiz History</Link>
+              <Link to={`/profile/update`} className="update link">Edit Profile</Link>
+              <button className="logout link" onClick={handleLogout}>
+                <FontAwesomeIcon className='icon' icon={faSignOutAlt}></FontAwesomeIcon>
+                Logout
+              </button>          
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <ConfirmationModal
-      isOpen={isLoggingOut}
-      onClose={handleLogoutCancel}
-      onConfirm={handleLogoutConfirm}
-      message="هل انت متاكد من انك تريد تسجيل الخروج؟"
-    />
-    </>
+      <ConfirmationModal
+        isOpen={isLoggingOut}
+        onClose={handleLogoutCancel}
+        onConfirm={handleLogoutConfirm}
+        message="Are you sure you want to log out?"
+      />
+      </>
   )
 }

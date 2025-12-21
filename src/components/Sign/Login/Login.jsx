@@ -12,7 +12,7 @@ export default function Login(){
     const [notFoundError,setNotFoundError] = useState(false);
     const [emailError,setEmailError] = useState(false);
     const [passwordError,setPasswordError] = useState(false);
-    const [unkownError, setUnkownError] = useState(false);
+    const [unknownError, setUnknownError] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false)
 
     function login(event){
@@ -43,7 +43,7 @@ export default function Login(){
 
             if (errorCode === 401) setNotFoundError(true);
 
-            if (errorCode !== 401 && errorCode !== 422) setUnkownError(true);
+            if (errorCode !== 401 && errorCode !== 422) setUnknownError(true);
         }).finally(()=>{
             setIsSubmitting(false)
         })
@@ -82,7 +82,7 @@ export default function Login(){
                     />
                     { passwordError && <p className='error'> Passwrod need to be at least 6 characters </p> }
                     { notFoundError && <p className='error'> Email adress or password is incorrect </p> }
-                    { unkownError && <p> Unkown errror please try again </p> }
+                    { unknownError && <p> Unkown errror please try again </p> }
                 </div>
 
                 <button type="submit" disabled={isSubmitting} onClick={login}>Login</button>

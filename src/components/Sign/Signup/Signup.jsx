@@ -25,27 +25,31 @@ export default function Signup(){
 
     const errorMessages = {
         name: {
-            required: 'حقل الاسم مطلوب',
-            min: 'الحد الأدنى للاسم ٣ أحرف',
-            max: 'الحد الأقصى للاسم ٢٥ حرفاً',
-            regex: 'يسمح فقط بالأحرف (من أي لغة)، الأرقام، المسافات، والشرطة السفلية (_). غير مسموح بالأحرف الخاصة أو الرموز الأخرى',
-            unique: 'الاسم مستخدم من قبل',
-            invalid: 'صيغة الاسم غير صحيحة'
+            required: 'Name field is required',
+            min: 'Minimum name length is 3 characters',
+            max: 'Maximum name length is 25 characters',
+            regex: 'Only letters (from any language), numbers, spaces, and underscores (_) are allowed. Special characters or other symbols are not allowed',
+            unique: 'This name is already taken',
+            invalid: 'Invalid name format'
         },
         email: {
-            required: 'حقل البريد الإلكتروني مطلوب',
-            email: 'صيغة البريد الإلكتروني غير صحيحة',
-            max: 'الحد الأقصى للبريد الإلكتروني ٣٢٠ حرفاً',
-            regex: 'يرجى إدخال بريد إلكتروني صحيح (مثال: example@domain.com)',
-            unique: 'البريد الإلكتروني مستخدم من قبل'
+            required: 'Email field is required',
+            email: 'Invalid email format',
+            max: 'Maximum email length is 320 characters',
+            regex: 'Please enter a valid email (e.g., example@domain.com)',
+            unique: 'This email is already used'
         },
         password: {
-            required: 'حقل كلمة المرور مطلوب',
-            min: 'الحد الأدنى لكلمة المرور ٦ أحرف',
-            regex: 'يجب أن تحتوي كلمة المرور على حرف إنجليزي ورقم واحد على الأقل',
-            invalid: 'صيغة كلمة المرور غير صحيحة'
+            required: 'Password field is required',
+            min: 'Minimum password length is 6 characters',
+            regex: 'Password must contain at least one English letter and one number',
+            invalid: 'Invalid password format'
         },
+        unkownError: {
+            other: 'An unknown error occurred, please try again'
+        }
     };
+
 
     function register(event){
         event.preventDefault();
@@ -71,27 +75,29 @@ export default function Signup(){
                     formattedErrors[field] = errorMessages[field]?.[errorType] || messages[0];
                 });
                 setErrors(formattedErrors);
+            }else {
+                setErrors({ unkownError: errorMessages.unkownError.other });
             }
         }).finally(()=>{
             setIsSubmitting(false)
         })
     }
 
-    return(
+    return (
         <>
             <div className='header'>
-                <h1>إنشاء حساب</h1>
-                <span> انشئ حساب او <Link to={'/login'}>سجل الدخول </Link></span>
+                <h1>Create Account</h1>
+                <span> Create an account or <Link to={'/login'}>Login</Link></span>
             </div>
 
             <form>
                 <div>
-                    <label>اسم المستخدم</label>
+                    <label>Username</label>
                     <input 
                         required
                         ref={name} 
                         type="text" 
-                        placeholder='اسم المستخدم'
+                        placeholder='Username'
                         pattern="^[\p{L}0-9_\s]{3,25}$"
                         minLength={3}
                         maxLength={25}
@@ -100,12 +106,12 @@ export default function Signup(){
                 </div>
 
                 <div>
-                    <label>عنوان البريد الالكتروني</label>
+                    <label>Email Address</label>
                     <input 
                         required
                         ref={email} 
                         type="email" 
-                        placeholder='عنوان البريد الالكتروني'
+                        placeholder='Email Address'
                         pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,6}$"
                         maxLength={320}
                     />
@@ -113,19 +119,19 @@ export default function Signup(){
                 </div>
 
                 <div>
-                    <label>كلمة المرور</label>
+                    <label>Password</label>
                     <input 
                         required
                         ref={password} 
                         type="password" 
-                        placeholder='كلمة المرور'
+                        placeholder='Password'
                         pattern="^(?=.*[A-Za-z])(?=.*\d).{6,}$"
                         minLength={6}
                     />
                     {errors.password && <p className='error'>{errors.password}</p>}
                 </div>
 
-                <button type="submit" disabled={isSubmitting} onClick={register}>إنشاء حساب</button>
+                <button type="submit" disabled={isSubmitting} onClick={register}>Create Account</button>
             </form>
         </>
     )

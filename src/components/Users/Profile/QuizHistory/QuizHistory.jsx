@@ -75,26 +75,26 @@ export default function QuizHistory({ mode }){
         return <Loading></Loading>;
     }
 
-    if(error){
+    if (error) {
         return (
             <>
             <div className='quiz-history empty'>
-                <h1>لم يتم اتمام اي امتحان من قبل</h1>
-                <p>ابدا باخذ الامتحانات</p>
-                <Link to={`/quizzes`}>الصفحة الرئيسية</Link>
-        </div>
+                <h1>No quizzes have been completed yet</h1>
+                <p>Start taking quizzes</p>
+                <Link to={`/quizzes`}>Home</Link>
+            </div>
             </>
         )
     }
 
-    if(searchError){
+    if (searchError) {
         return (
             <>
             <div className='search-page empty'>
-                <h1>لم يتم العثور على اي نتائج</h1>
-                <p>حاول التاكد من اسم الاختبار والمحاولة مرة اخرى</p>
-                <Link to={`/profile/history`}>ارجع الى الصفحة الرئيسية</Link>
-        </div>
+                <h1>No results found</h1>
+                <p>Please check the quiz name and try again</p>
+                <Link to={`/profile/history`}>Return to History Page</Link>
+            </div>
             </>
         )
     }
@@ -121,11 +121,11 @@ export default function QuizHistory({ mode }){
 
     function handleDifficulty(difficulty){
         if(difficulty == 1){
-            return 'سهل'
+            return 'Easy'
         }else if(difficulty == 2){
-            return 'متوسط'
+            return 'Medium'
         }else{
-            return 'صعب'
+            return 'Hard'
         }
     }
 
@@ -161,46 +161,48 @@ export default function QuizHistory({ mode }){
         if(search.current.value !== '') navigate(`/profile/history/search/${search.current.value}`)
     }
 
-    return(
+    return (
         <>
         <div className='quiz-history'>
-        <h2 className='header'>سجل الامتحانات</h2>
-        <div className="page-header">
-            <div className='search'>
-                <form action="" onSubmit={(event)=>handleSearch(event)}>
-                    <input ref={search} type="text" placeholder='أبحث عن امتحان...'/>
-                    <FontAwesomeIcon icon={faSearch} className='icon'></FontAwesomeIcon>
-                </form>
+            <h2 className='header'>Quiz History</h2>
+            <div className="page-header">
+                <div className='search'>
+                    <form action="" onSubmit={(event) => handleSearch(event)}>
+                        <input ref={search} type="text" placeholder='Search for a quiz...'/>
+                        <FontAwesomeIcon icon={faSearch} className='icon'></FontAwesomeIcon>
+                    </form>
+                </div>
+                <select onChange={handleSort} ref={sort} className='sort'>
+                    <option value="1">Ascending Alphabetical Order</option>
+                    <option value="2">Descending Alphabetical Order</option>
+                    <option value="3">Ascending by Score</option>
+                    <option value="4">Descending by Score</option>
+                </select>
             </div>
-            <select onChange={handleSort} ref={sort} className='sort'>
-                <option value="1">ترتيب تصاعدي حسب الابجدية</option>
-                <option value="2">ترتيب تنازلي حسب الابجدية</option>
-                <option value="3">ترتيب تصاعدي حسب النتيجة</option>
-                <option value="4">ترتيب تنازلي حسب النتيجة</option>
-            </select>
-        </div>
-        {submissions?.map((data) => (
-            <Link key={data.quiz.quiz_id} to={`/quizzes/results/${data.quiz.quiz_id}`}>
-                <div className='quiz-card'>
-                <p className='quiz-title'>{data.quiz.quiz_title}</p>
-                <p className='quiz-description'>{data.quiz.quiz_description}</p>
-                <div className="quiz-details">
-                <div className="detail-item">
-                    <strong>الصعوبة : </strong>
-                    <span className={`difficulty ${handleDifficultyClass(data.quiz.quiz_difficulty).toLowerCase()}`}>{handleDifficulty(data.quiz.quiz_difficulty)}</span>
-                </div>
-                <div className="detail-item">
-                    <strong>عدد الاسئلة : </strong>
-                    <span className="questions-count">{data.quiz.quiz_questions_count}</span>
-                </div>
-                <div className="detail-item">
-                    <strong>النتيجة : </strong>
-                    <span className={`score ${handleScoreClass(data.score)}`}>%{data.score}</span>
-                </div>
-                </div>
-                </div>
-            </Link>
-        ))}
+            {submissions?.map((data) => (
+                <Link key={data.quiz.quiz_id} to={`/quizzes/results/${data.quiz.quiz_id}`}>
+                    <div className='quiz-card'>
+                        <p className='quiz-title'>{data.quiz.quiz_title}</p>
+                        <p className='quiz-description'>{data.quiz.quiz_description}</p>
+                        <div className="quiz-details">
+                            <div className="detail-item">
+                                <strong>Difficulty: </strong>
+                                <span className={`difficulty ${handleDifficultyClass(data.quiz.quiz_difficulty).toLowerCase()}`}>
+                                    {handleDifficulty(data.quiz.quiz_difficulty)}
+                                </span>
+                            </div>
+                            <div className="detail-item">
+                                <strong>Number of Questions: </strong>
+                                <span className="questions-count">{data.quiz.quiz_questions_count}</span>
+                            </div>
+                            <div className="detail-item">
+                                <strong>Score: </strong>
+                                <span className={`score ${handleScoreClass(data.score)}`}>%{data.score}</span>
+                            </div>
+                        </div>
+                    </div>
+                </Link>
+            ))}
         </div>
         {
             isPagination &&
