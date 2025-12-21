@@ -38,17 +38,22 @@ export default function UpdateQuiz() {
                 const fetchedQuestions = quizData.quiz_questions || [];
                 const initialSelectedAnswers = {};
                 const initialPreviewUrls = {};
+                console.log("Fetched Questions:", fetchedQuestions);
 
                 fetchedQuestions.forEach((question) => {
                     const qId = question.quiz_question_id;
                     question.question_answers?.forEach((answer, answerIndex) => {
                         if (answer.correct_answer === 1) {
                             initialSelectedAnswers[qId] = answerIndex;
+                            console.log("Right Answere Here", [question, qId, question.question_answers, answer, answerIndex, initialSelectedAnswers]);
                         }
+                        console.log("Wrong Answere Here:", [question, qId, question.question_answers, answer, answerIndex, initialSelectedAnswers]);
                     });
 
                     initialPreviewUrls[qId] = question.question_image;
                 });
+
+                console.log("Initial Selected Answers:", initialSelectedAnswers);
 
                 setQuestions(fetchedQuestions);
                 setSelectedAnswers(initialSelectedAnswers);
