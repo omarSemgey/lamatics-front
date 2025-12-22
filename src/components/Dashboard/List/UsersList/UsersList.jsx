@@ -21,6 +21,7 @@ export default function UsersList({mode}) {
     const [isPagination, setisPagination] = useState(false);
     const [update, setUpdate] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isWorking, setIsWorking] = useState(false);
     const [userToDelete, setUserToDelete] = useState(null);
 
     const sort = useRef();
@@ -37,7 +38,6 @@ export default function UsersList({mode}) {
                 params : { page : params.page || 1 }
             })
             .then((response) => {
-                console.log(response.data.users.data);
                 setData(response.data.users.data);
                 setLastPage(response.data.users.last_page);
                 setCount(response.data.users.total);
@@ -83,14 +83,21 @@ export default function UsersList({mode}) {
     }
 
     async function handleDeleteConfirm(){
-        if (userToDelete) {
-            await axios.delete(`/users/${userToDelete}`)
-            .then(()=>{
-                setUpdate(update + 1);
-            })
+        setIsWorking(true);
+        try {
+            if (userToDelete) {
+                await axios.delete(`/users/${userToDelete}`)
+                .then(()=>{
+                    setUpdate(update + 1);
+                })
+            }
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsWorking(false);
+            setIsModalOpen(false);
+            setUserToDelete(null); 
         }
-        setIsModalOpen(false);
-        setUserToDelete(null); 
     }
 
     function handleDeleteCancel(){
@@ -163,6 +170,7 @@ export default function UsersList({mode}) {
                         <th className="info-title">Username</th>
                         <th className="email">Email</th>
                         <th className="info-count">Quizzes submission</th>
+                        <th className="role">Role</th>
                         <th className="actions">Actions</th>
                     </tr>
                 </thead>
@@ -172,7 +180,10 @@ export default function UsersList({mode}) {
                             <td data-info="Username:" className="info-title"><Link to={`/dashboard/users/show/${user.user_id}`}>{user.name}</Link></td>
                             <td data-info="Email:" className="email">{user.email}</td>
                             <td data-info="Quizzes submission:" className="info-count">
-                                {user.user_submissions_count}
+                                {user.role === 1 ? user.user_submissions_count : "N/A"}
+                            </td>
+                            <td data-info="User Role:" className="role">
+                                {user.role === 1 ? "User" : "Admin"}
                             </td>
                             <td data-info="Actions:" className="actions">
                                 <div className="icons-wrapper">
@@ -201,6 +212,7 @@ export default function UsersList({mode}) {
             isOpen={isModalOpen}
             onClose={handleDeleteCancel}
             onConfirm={handleDeleteConfirm}
+            isWorking={isWorking}
             message="Are you sure you want to delete this user?"
         />
         </>

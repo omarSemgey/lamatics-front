@@ -45,7 +45,12 @@ export default function ShowUser(){
 
                         <div className="user-detail">
                             <span className="detail-label">Submissions:</span>
-                            <span className="detail-value">{data.user_submissions_count}</span>
+                            <span className="detail-value">{data.role === 1 ? data.user_submissions_count : "N/A"}</span>
+                        </div>
+
+                        <div className="user-detail">
+                            <span className="detail-label">User Role:</span>
+                            <span className="detail-value">{data.role === 1 ? "User" : "Admin"}</span>
                         </div>
 
                         <Link to={`/dashboard/users/${userId}/submissions`} className="submissions-link">View User Submissions</Link>

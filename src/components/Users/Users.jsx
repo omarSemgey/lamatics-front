@@ -8,7 +8,7 @@ export default function Users(){
         <>
         <div className="users">
         <Navbar></Navbar>
-    <Outlet context={id}></Outlet>
+            <Outlet context={id}></Outlet>
         <Footer></Footer>
         </div>
         </>

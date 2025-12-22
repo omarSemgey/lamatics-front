@@ -45,7 +45,7 @@ export default function Signup(){
             regex: 'Password must contain at least one English letter and one number',
             invalid: 'Invalid password format'
         },
-        unkownError: {
+        unkown: {
             other: 'An unknown error occurred, please try again'
         }
     };
@@ -76,7 +76,7 @@ export default function Signup(){
                 });
                 setErrors(formattedErrors);
             }else {
-                setErrors({ unkownError: errorMessages.unkownError.other });
+                setErrors({ unkown: "Unkown error happened please try again later." });
             }
         }).finally(()=>{
             setIsSubmitting(false)
@@ -131,7 +131,11 @@ export default function Signup(){
                     {errors.password && <p className='error'>{errors.password}</p>}
                 </div>
 
-                <button type="submit" disabled={isSubmitting} onClick={register}>Create Account</button>
+                {errors.unkown && <p className='error'>{errors.unkown}</p>}
+    
+                <button type="submit" disabled={isSubmitting} onClick={register}>
+                    {isSubmitting ? "Loading..." : "Create Account"}
+                </button>
             </form>
         </>
     )

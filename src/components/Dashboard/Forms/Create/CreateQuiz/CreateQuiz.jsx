@@ -174,6 +174,8 @@ export default function CreateQuiz() {
                     formattedErrors[key] = value[0]; 
                 });
                 setErrors(formattedErrors);
+            }else{
+                setErrors({ unkown: 'An unexpected error occurred. Please try again.' });
             }
         }).finally(()=>{
             setIsSubmitting(false)
@@ -350,6 +352,7 @@ export default function CreateQuiz() {
                     ))}
 
                     {errors['questions_limit'] && <p className='error'>{errors['questions_limit']}</p>}
+                    {errors['unkown'] && <p className='error'>{errors['unkown']}</p>}
 
                     <button type="button" onClick={handleNewQuestion}>
                     Add Question ({questions.length}/{50})

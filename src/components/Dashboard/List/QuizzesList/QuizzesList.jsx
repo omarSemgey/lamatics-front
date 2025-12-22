@@ -23,6 +23,7 @@ export default function QuizzesList({mode}) {
     const [update, setUpdate] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [quizToDelete, setQuizToDelete] = useState(null);
+    const [isWorking, setIsWorking] = useState(false);
 
     const sort = useRef();
     const search = useRef();
@@ -83,14 +84,21 @@ export default function QuizzesList({mode}) {
     }
 
     async function handleDeleteConfirm(){
-        if (quizToDelete) {
-            await axios.delete(`/quizzes/${quizToDelete}`)
-            .then(()=>{
-                setUpdate(update + 1);
-            })
+        setIsWorking(true);
+        try {
+            if (quizToDelete) {
+                await axios.delete(`/quizzes/${quizToDelete}`)
+                .then(()=>{
+                    setUpdate(update + 1);
+                })
+            }
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsWorking(false);
+            setIsModalOpen(false);
+            setQuizToDelete(null); 
         }
-        setIsModalOpen(false);
-        setQuizToDelete(null); 
     }
 
     function handleDeleteCancel(){
@@ -213,6 +221,7 @@ export default function QuizzesList({mode}) {
             isOpen={isModalOpen}
             onClose={handleDeleteCancel}
             onConfirm={handleDeleteConfirm}
+            isWorking={isWorking}
             message="Are you sure you want to delete this quiz?"
         />
         </>

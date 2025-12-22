@@ -179,7 +179,7 @@ export default function ShowUserSubmissions({ mode }){
         <h3 className="count">
             Showing {submissions.length} Submissions from {submissions.total}
         </h3>
-        <table>
+        <table className='table'>
             <thead>
                 <tr>
                     <th className="info-title">Title</th>

@@ -20,8 +20,8 @@ const DashboardHero = () => {
         <div className='dashboard-hero'>
         <div className='header'>Dashboard</div>
         <div className='page-header'>
+            <span className='info'>App Analytics:</span>
             <p className='title'>lamatics</p>
-            <span className='info'>:احصائيات الموقع</span>
         </div>
         <div className='cards'>
             <div className='card'>

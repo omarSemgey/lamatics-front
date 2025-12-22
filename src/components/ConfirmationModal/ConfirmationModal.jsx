@@ -30,7 +30,8 @@ export default function ConfirmationModal({ isOpen, onClose, onConfirm, message,
                     >
                         {isWorking
                             ?  'Loading...'
-                            : 'Confirm'}
+                            : 'Confirm'
+                        }
                     </button>
                     <button
                         className="modal-button cancel"
