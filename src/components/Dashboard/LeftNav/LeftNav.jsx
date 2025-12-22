@@ -44,12 +44,13 @@ export default function LeftNav() {
         try {
             await axios.post('/auth/logout');
             localStorage.removeItem('isAuthenticated');
-            setIsLoggingOut(false);
             navigate('/');
         } catch (error) {
             console.error(error);
         } finally {
             setIsWorking(false);
+            setIsModalOpen(false);
+            setIsLoggingOut(false);
         }
     }
 
@@ -74,13 +75,13 @@ export default function LeftNav() {
                         <ul className='category-options'>
 
                             <li>
-                                <Link to={`/dashboard/quizzes`} className='cat-option' onClick={(event)=>{handleCatOption(event)}}>
+                                <Link to={`/dashboard/quizzes`} className='cat-option' onClick={(event)=>{handleCatOption(event); toggleNav()}}>
                                     Quizzes List
                                 </Link>
                             </li>
 
                             <li>
-                                <Link to={`/dashboard/quizzes/create`} className='cat-option' onClick={(event)=>{handleCatOption(event)}}>
+                                <Link to={`/dashboard/quizzes/create`} className='cat-option' onClick={(event)=>{handleCatOption(event); toggleNav()}}>
                                     Create Quiz
                                 </Link>
                             </li>
@@ -93,12 +94,12 @@ export default function LeftNav() {
                         </span>
                         <ul className='category-options'>
                             <li>
-                                <Link to={`/dashboard/users`} className='cat-option' onClick={(event)=>{handleCatOption(event)}}>
+                                <Link to={`/dashboard/users`} className='cat-option' onClick={(event)=>{handleCatOption(event); toggleNav()}}>
                                     Users list
                                 </Link>
                             </li>
                             <li>
-                                <Link to={`/dashboard/users/create`} className='cat-option' onClick={(event)=>{handleCatOption(event)}}>
+                                <Link to={`/dashboard/users/create`} className='cat-option' onClick={(event)=>{handleCatOption(event); toggleNav()}}>
                                     Create User
                                 </Link>
                             </li>

@@ -16,6 +16,7 @@ export default function QuizSession() {
     const [questions, setQuestions] = useState([]);
     const [selectedAnswers, setSelectedAnswers] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isWorking, setIsWorking] = useState(false);
 
     useEffect(() => {
         const fetchQuizData = async () => {
@@ -48,6 +49,7 @@ export default function QuizSession() {
     }
 
     async function handleSubmitConfirm(){
+        setIsWorking(true);
         axios.post('/submissions',{
             quiz_id: quizId,
             answers: selectedAnswers
@@ -63,7 +65,8 @@ export default function QuizSession() {
                 setErrors(formattedErrors);
             }
         }).finally(()=>{
-            setIsSubmitting(false)
+            setIsSubmitting(false);
+            setIsWorking(false);
         })
     }
 
@@ -133,6 +136,7 @@ export default function QuizSession() {
             isOpen={isSubmitting}
             onClose={handleSubmitCancel}
             onConfirm={handleSubmitConfirm}
+            isWorking={isWorking}
             message="Are you sure you want to submit the quiz?"
         />
         </>

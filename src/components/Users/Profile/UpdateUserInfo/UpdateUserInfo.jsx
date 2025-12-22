@@ -28,29 +28,32 @@ export default function UpdateUserInfo() {
         return 'other';
     }
 
+
     const errorMessages = {
         name: {
-            required: 'حقل الاسم مطلوب',
-            min: 'الحد الأدنى للاسم ٣ أحرف',
-            max: 'الحد الأقصى للاسم ٢٥ حرفاً',
-            format: 'يجب أن يحتوي الاسم على حرف واحد على الأقل غير المسافة',
-            unique: 'الاسم مستخدم من قبل',
-            type: 'يجب أن يكون الاسم نصياً'
+            required: 'Name field is required',
+            min: 'Minimum name length is 3 characters',
+            max: 'Maximum name length is 25 characters',
+            regex: 'Only letters (from any language), numbers, spaces, and underscores (_) are allowed. Special characters or other symbols are not allowed',
+            unique: 'This name is already taken',
+            invalid: 'Invalid name format'
         },
         email: {
-            required: 'حقل البريد الإلكتروني مطلوب',
-            email: 'صيغة البريد الإلكتروني غير صحيحة',
-            max: 'الحد الأقصى للبريد الإلكتروني ٣٢٠ حرفاً',
-            format: 'يجب أن يحتوي البريد الإلكتروني على حرف واحد على الأقل غير المسافة',
-            unique: 'البريد الإلكتروني مستخدم من قبل',
-            type: 'يجب أن يكون البريد الإلكتروني نصياً'
+            required: 'Email field is required',
+            email: 'Invalid email format',
+            max: 'Maximum email length is 320 characters',
+            regex: 'Please enter a valid email (e.g., example@domain.com)',
+            unique: 'This email is already used'
         },
         password: {
-            required: 'حقل كلمة المرور مطلوب',
-            min: 'الحد الأدنى لكلمة المرور ٦ أحرف',
-            format: 'يجب أن تحتوي كلمة المرور على حرف واحد على الأقل غير المسافة',
-            type: 'يجب أن تكون كلمة المرور نصية'
+            required: 'Password field is required',
+            min: 'Minimum password length is 6 characters',
+            regex: 'Password must contain at least one English letter and one number',
+            invalid: 'Invalid password format'
         },
+        unkown: {
+            other: 'An unknown error occurred, please try again'
+        }
     };
 
     useEffect(() => {
@@ -90,6 +93,8 @@ export default function UpdateUserInfo() {
                     formattedErrors[field] = errorMessages[field]?.[errorType] || messages[0];
                 });
                 setErrors(formattedErrors);
+            }else{
+                setErrors({ unkown: "Unkown error happened please try again later" });
             }
         }).finally(()=>{
             setIsSubmitting(false)
@@ -145,7 +150,11 @@ export default function UpdateUserInfo() {
                         {errors.password && <p className='error'>{errors.password}</p>}
                     </div>
 
-                    <button type="submit" disabled={isSubmitting} onClick={UpdateUserInfo}>Update Account</button>
+                    {errors.unkown && <p className='error'>{errors.unkown}</p>}
+
+                    <button type="submit" disabled={isSubmitting} onClick={UpdateUserInfo}>
+                        {isSubmitting ? "Loading..." : "Update Account"}
+                    </button>
                 </form>
             </div>
         </div>

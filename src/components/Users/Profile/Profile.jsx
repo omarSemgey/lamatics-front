@@ -12,6 +12,7 @@ export default function Profile() {
   const navigate = useNavigate();
   const [data,setData] = useState(null);
   const [isLoading,setIsLoading] = useState(true);
+  const [isWorking, setIsWorking] = useState(false);
 
   const [isLoggingOut, setIsLoggingOut] = useState(false)
 
@@ -32,12 +33,19 @@ export default function Profile() {
   }
 
   async function handleLogoutConfirm(){
-    axios.post('/auth/logout')
-    .then(() => {
+    setIsWorking(true);
+    try {
+      axios.post('/auth/logout')
+      .then(() => {
         localStorage.removeItem('isAuthenticated')
-        setIsLoggingOut(false);
         navigate('/');
-    });
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsWorking(false);
+      setIsLoggingOut(false);
+    }
   }
 
   function handleLogoutCancel(){
@@ -56,18 +64,18 @@ export default function Profile() {
             <h1 className="user-profile-title">Profile:</h1>
 
             <div className="user-detail">
-              <span className="detail-value">{data.name}</span>
               <span className="detail-label">Name:</span>
+              <span className="detail-value">{data.name}</span>
             </div>
 
             <div className="user-detail">
-              <span className="detail-value">{data.email}</span>
               <span className="detail-label">Email:</span>
+              <span className="detail-value">{data.email}</span>
             </div>
 
             <div className="user-detail">
-              <span className="detail-value">{data.user_submissions_count}</span>
               <span className="detail-label">Quizzes Taken:</span>
+              <span className="detail-value">{data.user_submissions_count}</span>
             </div>
 
             <div className="actions">
@@ -85,6 +93,7 @@ export default function Profile() {
         isOpen={isLoggingOut}
         onClose={handleLogoutCancel}
         onConfirm={handleLogoutConfirm}
+        isWorking={isWorking}
         message="Are you sure you want to log out?"
       />
       </>

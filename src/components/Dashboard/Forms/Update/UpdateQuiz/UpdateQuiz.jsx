@@ -38,22 +38,17 @@ export default function UpdateQuiz() {
                 const fetchedQuestions = quizData.quiz_questions || [];
                 const initialSelectedAnswers = {};
                 const initialPreviewUrls = {};
-                console.log("Fetched Questions:", fetchedQuestions);
 
                 fetchedQuestions.forEach((question) => {
                     const qId = Number(question.quiz_question_id);
                     question.question_answers?.forEach((answer, answerIndex) => {
                         if (Boolean(answer.correct_answer)) {
                             initialSelectedAnswers[qId] = answerIndex;
-                            console.log("Right Answere Here", [qId, answer, answerIndex]);
                         }
-                        console.log("Wrong Answere Here:", [qId, answer, answerIndex]);
                     });
 
                     initialPreviewUrls[qId] = question.question_image;
                 });
-
-                console.log("Initial Selected Answers:", initialSelectedAnswers);
                 
                 setQuestions(fetchedQuestions);
                 setSelectedAnswers(initialSelectedAnswers);
@@ -254,6 +249,8 @@ export default function UpdateQuiz() {
                     formattedErrors[key] = value[0]; 
                 });
                 setErrors(formattedErrors);
+            }else{
+                setErrors({ unkown: 'An unexpected error occurred. Please try again.' });
             }
         }).finally(() => {
             setIsSubmitting(false);
@@ -433,6 +430,7 @@ export default function UpdateQuiz() {
                         )})}
 
                         {errors['questions_limit'] && <p className='error'>{errors['questions_limit']}</p>}
+                        {errors['unkown'] && <p className='error'>{errors['unkown']}</p>}
 
                         <button type="button" onClick={handleNewQuestion}>Add Question({questions.length} / {50})</button>
                         <button disabled={isSubmitting} onClick={(event) => updateQuizInfo(event)}>

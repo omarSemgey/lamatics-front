@@ -56,6 +56,8 @@ export default function UpdateUser(){
                     formattedErrors[key] = value[0]; 
                 });
                 setErrors(formattedErrors);
+            }else{
+                setErrors({ unkown: 'An unexpected error occurred. Please try again.' });
             }
         }).finally(()=>{
             setIsSubmitting(false)
@@ -111,6 +113,8 @@ export default function UpdateUser(){
                             {errors['password'] && <p className='error'>{errors['password']}</p>}
                         </div>
 
+                    {errors['unkown'] && <p className='error'>{errors['unkown']}</p>}
+                    
                     <button type='submit' disabled={isSubmitting} onClick={(event)=>UpdateUserInfo(event)}>
                         {
                             isSubmitting ?

@@ -35,6 +35,8 @@ export default function CreateUser() {
                     formattedErrors[key] = value[0]; 
                 });
                 setErrors(formattedErrors);
+            }else{
+                setErrors({ unkown: 'An unexpected error occurred. Please try again.' });
             }
         }).finally(()=>{
             setIsSubmitting(false)
@@ -98,6 +100,8 @@ export default function CreateUser() {
                             </label>
                         </div>
 
+                        {errors['unkown'] && <p className='error'>{errors['unkown']}</p>}
+                        
                         <button type='submit' disabled={isSubmitting} onClick={(event) => handleUserCreation(event)}>
                             {
                                 isSubmitting ?
