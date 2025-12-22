@@ -82,7 +82,7 @@ export default function Login(){
                     />
                     { passwordError && <p className='error'> Passwrod need to be at least 6 characters </p> }
                     { notFoundError && <p className='error'> Email adress or password is incorrect </p> }
-                    { UnkownError && <p className='error'> Unkown errror please try again </p> }
+                    { unkownError && <p className='error'> Unkown errror please try again </p> }
                 </div>
 
                 <button type="submit" disabled={isSubmitting} onClick={login}>
