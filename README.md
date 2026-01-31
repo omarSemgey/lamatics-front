@@ -1,6 +1,6 @@
 # Lamatics – E-Quiz Platform
 
-(Lamatics)[https://lamatics.onrender.com/] is a full-stack e-quiz platform designed to connect teachers with their students in a simple, efficient, and scalable way. It enables teachers to create and manage quizzes while allowing students to take assessments and track their academic progress over time.
+[Lamatics](https://lamatics.onrender.com/) is a full-stack e-quiz platform designed to connect teachers with their students in a simple, efficient, and scalable way. It enables teachers to create and manage quizzes while allowing students to take assessments and track their academic progress over time.
 
 The platform focuses on ease of use, performance, and real-world classroom needs, making digital assessments more accessible and organized.
 
@@ -42,7 +42,3 @@ Lamatics solves this by:
 - PostgreSQL (relational database)
 
 - Redis (caching and performance optimization)
-
-Performance optimization using caching
-
-Practical use of modern web technologies
