@@ -1,3 +1,10 @@
+# ⚠️🚧 Under Active Development
+
+This project is currently being rebuilt as **Lamatics 2.0**. During this transition, some hosted demos or features may be unavailable or behave unexpectedly.
+
+If you experience any issues, please contact me at **[omar.semgey@gmail.com](mailto:omar.semgey@gmail.com)**.
+
+
 # Lamatics – E-Quiz Platform
 
 [Lamatics](https://lamatics.onrender.com/) is a full-stack e-quiz platform designed to connect teachers with their students in a simple and efficient way. It enables teachers to create and manage quizzes while allowing students to track their academic progress over time.
